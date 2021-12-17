@@ -38,4 +38,5 @@ convram <- function(reqram,alloccpu){
      ram <- strtoi(str_sub(reqram,1,-3))
    }
   }
+  return(ram)
 }
