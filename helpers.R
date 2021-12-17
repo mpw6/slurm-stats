@@ -24,4 +24,18 @@ getelapsed <- function(x){
   return(secs)
 }
 
-
+convram <- function(reqram,alloccpu){
+  if (str_sub(reqram,-2,-2)=="M") {
+   if (str_sub(reqram,-1,-1)=="c") {
+     ram <- strtoi(str_sub(reqram,1,-3)) * alloccpu / 1000
+   } else if (str_sub(reqram,-1,-1)=="n") {
+     ram <- strtoi(str_sub(reqram,1,-3)) / 1000
+   }
+  } else if (str_sub(reqram,-2,-2)=="G") {
+   if (str_sub(reqram,-1,-1)=="c") {
+     ram <- strtoi(str_sub(reqram,1,-3)) * alloccpu
+   } else if (str_sub(reqram,-1,-1)=="n") {
+     ram <- strtoi(str_sub(reqram,1,-3))
+   }
+  }
+}
