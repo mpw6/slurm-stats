@@ -40,17 +40,20 @@ dt$TotalTime=dt$Elapsed * dt$AllocCPUS
 dt$TimelimitAccuracy = dt$Elapsed / dt$Timelimit
 
 # Convert the formatted byte values to standard bytes
-
 dt$MaxVMSize=convb(dt$MaxVMSize)
 dt$MaxRSS=convb(dt$MaxRSS)
 dt$MaxDiskRead=convb(dt$MaxDiskRead)
 dt$MaxDiskWrite=convb(dt$MaxDiskWrite)
+
+# Convert the ReqMem to GB per Node
+dt$ReqMem=convram(dt$ReqRam,dt$AllocCPUS)
 
 
 # User -based statistics as CSV
 
 setkey(dt,User)
 dt2 <- dt[, list(count=.N, AllocCPUS_min=min(AllocCPUS), AllocCPUS_mean=mean(AllocCPUS), AllocCPUS_stddev=sd(AllocCPUS), AllocCPUS_max=max(AllocCPUS),
+                     ReqMem_min=min(ReqMem), ReqMem_mean=mean(ReqMem), ReqMem_stddev=sd(ReqMem), ReqMem_max=max(ReqMem),
                      QueueTime_min=min(QueueTime), QueueTime_mean=mean(QueueTime), QueueTime_stddev=sd(QueueTime), QueueTime_max=max(QueueTime),
                      Elapsed_min=min(Elapsed),Elapsed_mean=mean(Elapsed), Elapsed_stddev=sd(Elapsed), Elapsed_max=max(Elapsed),
                      TimelimitAccuracy_min=min(TimelimitAccuracy),TimelimitAccuracy_mean=mean(TimelimitAccuracy), TimelimitAccuracy_stddev=sd(TimelimitAccuracy), TimelimitAccuracy_max=max(TimelimitAccuracy)
