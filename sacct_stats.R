@@ -3,6 +3,7 @@
 # install.packages(data.table)
 
 require(data.table)
+require(stringr)
 
 args <- commandArgs(trailingOnly = TRUE)
 print(args[0])
