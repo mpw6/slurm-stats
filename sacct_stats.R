@@ -47,7 +47,9 @@ dt$MaxDiskRead=convb(dt$MaxDiskRead)
 dt$MaxDiskWrite=convb(dt$MaxDiskWrite)
 
 # Convert the ReqMem to GB per Node
-dt$ReqMem=convram(dt$ReqRam,dt$AllocCPUS)
+#dt$ReqMem=convram(dt$ReqRam,dt$AllocCPUS)
+#
+# Preprocess data with AWK until figuring out how to make this work correctly in R
 
 
 # User -based statistics as CSV
@@ -66,6 +68,7 @@ setkey(dt,Month,Year)
 # Monthly statistics as CSV
 
 dt3 <- dt[, list(count=.N, AllocCPUS_min=min(AllocCPUS), AllocCPUS_mean=mean(AllocCPUS), AllocCPUS_stddev=sd(AllocCPUS), AllocCPUS_max=max(AllocCPUS),
+                            ReqMem_min=min(ReqMem), ReqMem_mean=mean(ReqMem), ReqMem_stddev=sd(ReqMem), ReqMem_max=max(ReqMem),
                             QueueTime_min=min(QueueTime), QueueTime_mean=mean(QueueTime), QueueTime_stddev=sd(QueueTime), QueueTime_max=max(QueueTime),
                             Elapsed_min=min(Elapsed),Elapsed_mean=mean(Elapsed), Elapsed_stddev=sd(Elapsed), Elapsed_max=max(Elapsed),
                             TimelimitAccuracy_min=min(TimelimitAccuracy,na.rm=TRUE),TimelimitAccuracy_mean=mean(TimelimitAccuracy,na.rm=TRUE), TimelimitAccuracy_stddev=sd(TimelimitAccuracy,na.rm=TRUE), TimelimitAccuracy_max=max(TimelimitAccuracy,na.rm=TRUE)
