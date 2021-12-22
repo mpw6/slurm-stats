@@ -5,6 +5,7 @@ Currently the scripts are
  - **sacct_stats.R** which generates simple user/monthly stats from sacct output
  - **sacct_stats_queue_dist.R** which generates a CSV with a binned distribution of how long jobs in each partition have queued
  - **helpers.R** helper functions to convert timestamps etc.
+ - **convram.sh** preprocessing script to convert ReqRam field to GB RAM allocated per job.
  
 ## sacct_stats.R ##
 ### Fetching data
@@ -14,6 +15,12 @@ To generate the data, you should use the following type of **sacct** command. Yo
 
 The example contains some extra fields which are not processed yet by the script but will likely be useful
 
+### Preprocessing the data
+Until the convram function in the **helpers.R** can be debugged, it is necessary to preprocess the data using an awk script. This converts the ReqRam field to GB RAM allocated per job. Current the path and filename is hardcoded and should be edited before running. Fixing the script to handle CLI argumentsis a simple but still forthcoming fix.
+
+```
+sh convram.sh
+```
 ### Processing the data
  - Ensure that you have the [data.table](https://github.com/Rdatatable/data.table) library installed in R
 ```
