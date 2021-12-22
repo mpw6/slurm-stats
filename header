@@ -1,0 +1,1 @@
+JobID|JobIDRaw|JobName|User|Group|Partition|MaxRSS|MaxPages|AveCPU|MaxDiskWrite|MaxDiskRead|MaxVMSize|NTasks|AllocCPUS|Submit|Start|Elapsed|End|State|ExitCode|ReqMem|Timelimit
